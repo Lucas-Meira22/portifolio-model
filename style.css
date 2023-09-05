@@ -12,7 +12,7 @@
     --surface-color : rgba(255,255,255,0.05);
     --surface-color-hover : rgba(0,0,0,0.2);
     --switch-bg-url: url(assets/moon-stars.svg);
-
+    --highlight-color: rgba(255, 255, 255, 0.2);
 }
 
 .light{
@@ -23,7 +23,7 @@
     --surface-color : rgba(0,0,0,0.1);
     --surface-color-hover : rgba(0,0,0,0.2);
     --switch-bg-url: url(assets/sun.svg);
-    
+    --highlight-color: rgba(0, 0, 0, 0.1);
     
 }
 body{
@@ -35,7 +35,8 @@ body *{
 }
 
 .container{
-    width: 360px;
+    width: 100%;
+    max-width: 588px;
     margin: 56px auto 0;
     padding: 0 24px;
 
@@ -77,6 +78,8 @@ body *{
     z-index: 20;
     top: 50%;
     transform: translateY(-50%);
+
+    animation: slide-back 0.3s;
 }
 .switch span{
     display: block;
@@ -90,10 +93,12 @@ body *{
     z-index: 20;
 
 }
+.switch button:hover{
+    outline: 8px solid var(--highlight-color);
+}
 
 .light .switch button{
-    right: 0;
-    left: initial;
+    animation: slide-in 0.4s forwards;
 }
 .links ul  {
     list-style: none;
@@ -152,4 +157,31 @@ body *{
 footer{
     padding: 24px 0;
     text-align: center;
+}
+
+@media (min-width: 700px) {
+    :root{
+        --bg-url: url(./assets/bg-mobile.jpg);
+    }
+    .light{
+        --bg-url: url(./assets/bg-mobile-light.jpgs);
+    }
+}
+
+@keyframes slide-in{
+    from{
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes slide-back{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 0;
+    }
 }
